@@ -1,0 +1,26 @@
+{
+  "name": "restaurant-review-rest-api",
+  "version": "1.0.0",
+  "description": "REST API built with Node, Express, and MongoDB.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javier-cp6/restaurant-review-rest-api.git"
+  },
+  "author": "jcp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javier-cp6/restaurant-review-rest-api/issues"
+  },
+  "homepage": "https://github.com/javier-cp6/restaurant-review-rest-api#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.0"
+  }
+}
