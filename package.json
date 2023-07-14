@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/javier-cp6/restaurant-review-rest-api#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongodb": "^5.7.0"
   },
   "devDependencies": {
     "dotenv-cli": "^7.2.1",
