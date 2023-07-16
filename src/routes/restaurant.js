@@ -4,7 +4,8 @@ import {
   getRestaurantById,
   createRestaurant,
   updateRestaurant,
-  deleteRestaurant
+  deleteRestaurant,
+  addGradeToRestaurant,
 } from '../controllers/restaurant.js';
 
 export const restaurantRouter = Router();
@@ -19,3 +20,7 @@ restaurantRouter
   .get(getRestaurantById)
   .put(updateRestaurant)
   .delete(deleteRestaurant);
+
+restaurantRouter
+  .route('/restaurant_grade/:id')
+  .put(addGradeToRestaurant)
