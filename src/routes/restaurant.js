@@ -6,6 +6,8 @@ import {
   updateRestaurant,
   deleteRestaurant,
   addGradeToRestaurant,
+  getRestaurantByIdWithComments,
+  getAllRestaurantsWithComments,
 } from '../controllers/restaurant.js';
 
 export const restaurantRouter = Router();
@@ -24,3 +26,11 @@ restaurantRouter
 restaurantRouter
   .route('/restaurant_grade/:id')
   .put(addGradeToRestaurant)
+
+restaurantRouter
+  .route('/restaurant_comments')
+  .get(getAllRestaurantsWithComments);
+
+restaurantRouter
+  .route('/restaurant_comments/:restaurantId')
+  .get(getRestaurantByIdWithComments);

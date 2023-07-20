@@ -93,3 +93,56 @@ export const addGradeToRestaurant = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+export const getAllRestaurantsWithComments = async (req, res) => {
+  try {
+    const restaurantWithComments = await db.collection('restaurants').aggregate([
+      {
+        $lookup: {
+          from: 'comments',
+          localField: '_id',
+          foreignField: 'restaurant_id',
+          as: 'comments'
+        }
+      }
+    ]).toArray();
+
+    if (restaurantWithComments.length === 0) {
+      return res.status(404).json({ error: 'Restaurant not found.' });
+    }
+
+    return res.json(restaurantWithComments);
+  } catch (error) { 
+    console.error('Error retrieving restaurant with comments:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+export const getRestaurantByIdWithComments = async (req, res) => {
+  const { restaurantId } = req.params;
+  try {
+    const objectIdRestaurantId = new ObjectId(restaurantId);
+    const restaurantWithComments = await db.collection('restaurants').aggregate([
+      {
+        $match: { _id: objectIdRestaurantId }
+      },
+      {
+        $lookup: {
+          from: 'comments',
+          localField: '_id',
+          foreignField: 'restaurant_id',
+          as: 'comments'
+        }
+      }
+    ]).toArray();
+
+    if (restaurantWithComments.length === 0) {
+      return res.status(404).json({ error: 'Restaurant not found.' });
+    }
+
+    return res.json(restaurantWithComments[0]);
+  } catch (error) {
+    console.error('Error retrieving restaurant with comments:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};

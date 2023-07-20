@@ -1,6 +1,8 @@
 import express from 'express';
 import { connect } from './db/db.js';
 import { restaurantRouter } from "./routes/restaurant.js";
+import { userRouter } from "./routes/user.js";
+import { commentRouter } from "./routes/comment.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -8,6 +10,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 app.use(restaurantRouter);
+app.use(userRouter);
+app.use(commentRouter);
 
 connect()
   .then(() => {
