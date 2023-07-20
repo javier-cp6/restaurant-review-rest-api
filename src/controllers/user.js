@@ -73,9 +73,9 @@ export const deleteUser = async (req, res) => {
 };
 
 export const getUserByIdWithComments = async (req, res) => {
-  const { userId } = req.params;
+  const { id } = req.params;
   try {
-    const objectIduserId = new ObjectId(userId);
+    const objectIduserId = new ObjectId(id);
     const userWithComments = await db.collection('users').aggregate([
       {
         $match: { _id: objectIduserId }

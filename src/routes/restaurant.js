@@ -18,19 +18,19 @@ restaurantRouter
   .get(getRestaurants);
 
 restaurantRouter
+  .route('/restaurant/comments')
+  .get(getAllRestaurantsWithComments);
+
+restaurantRouter
   .route('/restaurant/:id')
   .get(getRestaurantById)
   .put(updateRestaurant)
   .delete(deleteRestaurant);
 
 restaurantRouter
-  .route('/restaurant_grade/:id')
+  .route('/restaurant/:id/grade')
   .put(addGradeToRestaurant)
 
 restaurantRouter
-  .route('/restaurant_comments')
-  .get(getAllRestaurantsWithComments);
-
-restaurantRouter
-  .route('/restaurant_comments/:restaurantId')
+  .route('/restaurant/:id/comments')
   .get(getRestaurantByIdWithComments);

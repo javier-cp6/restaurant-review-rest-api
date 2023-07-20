@@ -22,5 +22,5 @@ userRouter
   .delete(deleteUser);
 
 userRouter
-  .route('/user_comments/:userId')
+  .route('/user/:id/comments')
   .get(getUserByIdWithComments)

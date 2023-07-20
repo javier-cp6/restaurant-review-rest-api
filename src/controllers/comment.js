@@ -12,10 +12,9 @@ export const getComments = async (req, res) => {
 };
 
 export const getCommentById = async (req, res) => {
-  const { userId } = req.params;
-  const { commentId } = req.query;
+  const { id } = req.params;
   try {
-    const comment = await db.collection('comments').findOne({ _id: new ObjectId(commentId) });
+    const comment = await db.collection('comments').findOne({ _id: new ObjectId(id) });
 
     if (comment) {
       res.status(200).json(comment);
@@ -29,8 +28,7 @@ export const getCommentById = async (req, res) => {
 };
 
 export const createComment = async (req, res) => {
-  const { userId } = req.params;
-  const { restaurantId } = req.query;
+  const { userId, restaurantId } = req.query;
   const { comment, rating }   = req.body;
 
   const commentDoc = {
@@ -52,8 +50,7 @@ export const createComment = async (req, res) => {
 }
 
 export const updateComment = async (req, res) => {
-  const { userId } = req.params;
-  const { commentId } = req.query;
+  const { id } = req.params;
   const { comment, rating }   = req.body;
 
   const commentDoc = {
@@ -64,7 +61,7 @@ export const updateComment = async (req, res) => {
 
   try {
     const result = await db.collection('comments').updateOne(
-      { _id: new ObjectId(commentId) },
+      { _id: new ObjectId(id) },
       { $set: commentDoc }
     );
 
@@ -81,12 +78,11 @@ export const updateComment = async (req, res) => {
 };
 
 export const deleteComment = async (req, res) => {
-  const { userId } = req.params;
-  const { commentId } = req.query;
+  const { id } = req.params;
 
   try {
     const result = await db.collection('comments').deleteOne(
-      { _id: new ObjectId(commentId) },
+      { _id: new ObjectId(id) },
     );
 
     if (result.deletedCount > 0) {

@@ -119,9 +119,9 @@ export const getAllRestaurantsWithComments = async (req, res) => {
 };
 
 export const getRestaurantByIdWithComments = async (req, res) => {
-  const { restaurantId } = req.params;
+  const { id } = req.params;
   try {
-    const objectIdRestaurantId = new ObjectId(restaurantId);
+    const objectIdRestaurantId = new ObjectId(id);
     const restaurantWithComments = await db.collection('restaurants').aggregate([
       {
         $match: { _id: objectIdRestaurantId }
