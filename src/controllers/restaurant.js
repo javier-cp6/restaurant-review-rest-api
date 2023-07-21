@@ -146,3 +146,52 @@ export const getRestaurantByIdWithComments = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+export const searchRestaurants = async (req, res) => {
+  const { 
+    name, 
+    cuisine, 
+    borough, 
+    zipcode, 
+    street, 
+    latitude, 
+    longitude, 
+    maxDistanceInMeters 
+  } = req.query;
+  
+  const searchQuery = {}
+  const REGEX_OPTIONS = 'i';
+
+  if (name) {
+    searchQuery.name = { $regex: name, $options: REGEX_OPTIONS };
+  }
+  if (cuisine) {
+    searchQuery.cuisine = { $regex: cuisine, $options: REGEX_OPTIONS };
+  }
+  if (borough) {
+    searchQuery.borough = { $regex: borough, $options: REGEX_OPTIONS };
+  }
+  if (street) {
+    searchQuery['address.street'] = { $regex: street, $options: REGEX_OPTIONS };
+  }
+  if (zipcode) {
+    searchQuery['address.zipcode'] = { $regex: zipcode, $options: REGEX_OPTIONS };
+  }
+  if (latitude && longitude && maxDistanceInMeters) {
+    searchQuery['address.coord'] = {
+      $near: {
+        $geometry: { type: 'Point', coordinates: [parseFloat(longitude), parseFloat(latitude)] },
+        $maxDistance: parseInt(maxDistanceInMeters)
+      }
+    };
+  }
+  
+  try {
+    const result = await db.collection('restaurants').find(searchQuery).toArray();
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.error('Error searching restaurants by coordinates:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
