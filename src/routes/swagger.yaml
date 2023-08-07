@@ -1,0 +1,419 @@
+openapi: 3.0.0
+info:
+  title: restaurant-review-rest-api
+  version: 1.0.0
+servers:
+  - url: /
+tags:
+  - name: restaurants
+  - name: users
+  - name: comment
+paths:
+  /restaurant:
+    get:
+      tags:
+        - restaurants
+      summary: List restaurants
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - restaurants
+      summary: Create restaurant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                address:
+                  building: "8825"
+                  coord:
+                    - -73.8803827
+                    - 40.7643124
+                  street: Astoria Boulevard
+                  zipcode: "11369"
+                borough: Queens
+                cuisine: American
+                grades: []
+                comments: []
+                name: Brunos On The Boulevard II
+                restaurant_id: "40356151"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /restaurant/search:
+    get:
+      tags:
+        - restaurants
+      summary: Search restaurants by location
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          example: brun
+        - name: cuisine
+          in: query
+          schema:
+            type: string
+          example: american
+        - name: borough
+          in: query
+          schema:
+            type: string
+          example: king
+        - name: zipcode
+          in: query
+          schema:
+            type: integer
+          example: "11369"
+        - name: street
+          in: query
+          schema:
+            type: string
+          example: casa
+        - name: latitude
+          in: query
+          schema:
+            type: number
+          example: "40.76411734612779"
+        - name: longitude
+          in: query
+          schema:
+            type: number
+          example: "-73.87958876914402"
+        - name: maxDistanceInMeters
+          in: query
+          schema:
+            type: integer
+          example: "10000"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  "/restaurant/{id}":
+    put:
+      tags:
+        - restaurants
+      summary: Update restaurant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Alice2.1
+                year: ""
+                major: History
+                gpa: "3.0"
+                address:
+                  city: NYC
+                  street: 33rd Street
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 64b10330bcecc1f679c31bfd
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - restaurants
+      summary: Get restaurant by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 64b10330bcecc1f679c31bfd
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - restaurants
+      summary: Delete restaurant by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 64b10330bcecc1f679c31bfd
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  "/restaurant/{id}/grade":
+    put:
+      tags:
+        - restaurants
+      summary: Add grade to restaurant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                score: 4
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 64b223d71e8a49bfe3ac37ea
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  "/restaurant/{id}/comments":
+    get:
+      tags:
+        - restaurants
+      summary: Get restaurant by id with comments
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 64b188240ed5a74ac55a52a4
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /restaurant/comments:
+    get:
+      tags:
+        - restaurants
+      summary: Get all restaurants with comments
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /user:
+    get:
+      tags:
+        - users
+      summary: List users
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - users
+      summary: Create user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: name
+                email: email@abc.com
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  "/user/{id}":
+    put:
+      tags:
+        - users
+      summary: Update user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: name
+                email: email@abc.com
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 64b84e86060a869858a86cda
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - users
+      summary: Get user by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 64b84e9c060a869858a86cdb
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - users
+      summary: Delete user by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 64b84fbe060a869858a86cdc
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  "/user/{id}/comments":
+    get:
+      tags:
+        - users
+      summary: Get user by id with comments
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 64b84e86060a869858a86cda
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /comment:
+    post:
+      tags:
+        - comment
+      summary: Add comment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                comment: Great!
+                rating: 5
+      parameters:
+        - name: userId
+          in: query
+          schema:
+            type: string
+          example: 64b84e9c060a869858a86cdb
+        - name: restaurantId
+          in: query
+          schema:
+            type: string
+          example: 64b223d71e8a49bfe3ac37ea
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - comment
+      summary: List comments
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  "/comment/{id}":
+    put:
+      tags:
+        - comment
+      summary: Update comment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                comment: Very good!
+                rating: 5
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 64b99bdf6b0eb12ee37f0210
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - comment
+      summary: Get comment by id
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 64b99bdf6b0eb12ee37f0210
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - comment
+      summary: Delete comment
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 64b99bdf6b0eb12ee37f0210
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /:
+    get:
+      tags:
+        - General
+      summary: Home
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}

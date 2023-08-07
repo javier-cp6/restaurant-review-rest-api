@@ -3,6 +3,7 @@ import { connect } from './db/db.js';
 import { restaurantRouter } from "./routes/restaurant.js";
 import { userRouter } from "./routes/user.js";
 import { commentRouter } from "./routes/comment.js";
+import { swaggerRouter } from "./routes/swagger.routes.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(restaurantRouter);
 app.use(userRouter);
 app.use(commentRouter);
+app.use(swaggerRouter);
 
 connect()
   .then(() => {
