@@ -10,12 +10,12 @@ import {
 export const commentRouter = Router();
 
 commentRouter
-  .route('/comment')
+  .route('/comments')
   .get(getComments)
   .post(createComment)
 
 commentRouter
-  .route('/comment/:id')
+  .route('/comments/:id')
   .get(getCommentById)
   .put(updateComment)
   .delete(deleteComment)
