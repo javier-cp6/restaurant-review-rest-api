@@ -11,16 +11,16 @@ import {
 export const userRouter = Router();
 
 userRouter
-  .route('/user')
+  .route('/users')
   .post(createUser)
   .get(getUsers);
 
 userRouter
-  .route('/user/:id')
+  .route('/users/:id')
   .get(getUserById)
   .put(updateUser)
   .delete(deleteUser);
 
 userRouter
-  .route('/user/:id/comments')
+  .route('/users/:id/comments')
   .get(getUserByIdWithComments)

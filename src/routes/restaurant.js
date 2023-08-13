@@ -14,28 +14,28 @@ import {
 export const restaurantRouter = Router();
 
 restaurantRouter
-  .route('/restaurant')
+  .route('/restaurants')
   .post(createRestaurant)
   .get(getRestaurants);
 
 restaurantRouter
-  .route('/restaurant/comments')
+  .route('/restaurants/comments')
   .get(getAllRestaurantsWithComments);
 
 restaurantRouter
-  .route('/restaurant/search')
+  .route('/restaurants/search')
   .get(searchRestaurants);
 
 restaurantRouter
-  .route('/restaurant/:id')
+  .route('/restaurants/:id')
   .get(getRestaurantById)
   .put(updateRestaurant)
   .delete(deleteRestaurant);
 
 restaurantRouter
-  .route('/restaurant/:id/grade')
+  .route('/restaurants/:id/grades')
   .put(addGradeToRestaurant)
 
 restaurantRouter
-  .route('/restaurant/:id/comments')
+  .route('/restaurants/:id/comments')
   .get(getRestaurantByIdWithComments);

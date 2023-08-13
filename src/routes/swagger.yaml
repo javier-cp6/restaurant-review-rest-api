@@ -9,7 +9,7 @@ tags:
   - name: users
   - name: comment
 paths:
-  /restaurant:
+  /restaurants:
     get:
       tags:
         - restaurants
@@ -47,7 +47,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /restaurant/search:
+  /restaurants/search:
     get:
       tags:
         - restaurants
@@ -98,7 +98,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  "/restaurant/{id}":
+  "/restaurants/{id}":
     put:
       tags:
         - restaurants
@@ -160,7 +160,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  "/restaurant/{id}/grade":
+  "/restaurants/{id}/grades":
     put:
       tags:
         - restaurants
@@ -184,7 +184,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  "/restaurant/{id}/comments":
+  "/restaurants/{id}/comments":
     get:
       tags:
         - restaurants
@@ -201,7 +201,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /restaurant/comments:
+  /restaurants/comments:
     get:
       tags:
         - restaurants
@@ -211,7 +211,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /user:
+  /users:
     get:
       tags:
         - users
@@ -238,7 +238,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  "/user/{id}":
+  "/users/{id}":
     put:
       tags:
         - users
@@ -295,7 +295,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  "/user/{id}/comments":
+  "/users/{id}/comments":
     get:
       tags:
         - users
@@ -312,7 +312,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /comment:
+  /comments:
     post:
       tags:
         - comment
@@ -350,7 +350,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  "/comment/{id}":
+  "/comments/{id}":
     put:
       tags:
         - comment
